@@ -9,7 +9,13 @@ The first group of tasks that I completed for this project was creating a projec
 
 ## Data
 
-I had two main sources of data for this project. I used articles from the New York Times API and a data set provided by components.one with a SQLite database with more than 20,000 Pitchfork album reviews from the beginning of 1999 up to 2019. 
+The two sets of data that I used for this project came from the New York Times API and Pitchfork.com. From the NYT API, all articles published from 1995 to the present day were pulled. I found a dataset online of Pitchfork album reviews but the data stopped after 2017. Since the point of this project was to see the interactions and effect that the news and current events has on music being produced and released, cutting the data off in 2017 right after the Trump administration entered office would be losing an entire year of data that could have helpful insights. Instead I wrote a program that would pull all of the album reviews from Pitchfork so that I could have the entire archive of reviews for analysis. 
+
+The Pitchfork reviews required little cleaning after removing HTML tags and getting columns formatted. The only issue that I ended up having with the program that scraped all the album reviews was that it didn't take the year that album was from and only got the date that the review was published. Coming back to this project in the future I would rerun the program after fixing the error that resulted in not aquiring this data. For my project, I continued on using the articles for analysis by the date which they were published. Pitchfork is known online for being pretentious and the focus of their reviews not totally about the music there is to be listened to but external factors also written into the reviews. 
+
+Every Sunday, for example, starting in 2016 Pitchfork would publish a review for an album that was released in the past that had not been reviewed before. These reviews typically have some relevance with what is going on currently in the music world or have relevance with current events and the news. An example being that in January 2020, Pitchfork's review that they chose to do for their flashback Sunday was "Home" by the Dixie Chicks (months later, The Chicks). The Dixie Chicks were planned to release an album at some point in 2020 after a long hiatus from music (after getting cancelled and ostracized by the American public for political statements about George W. Bush). The first half of the review creates parallels to the way that "Home" became the album that it is. It was the product of a lawsuit battle they were having with a record label that was holding out on royalties owed to the Dixie Chicks. The context of the album fits much the same as the story that would lead up to their upcoming album. The review draws parallels to the political climate when "Home" was released in 2002 and currently. It discusses the tracks on the album in the context that the tracks would be discussed in a 2020 anaylsis of its contents. 
+
+Due to relevant nature that Pitchfork writes reviews about older albums that they review, I'm going to be using all of the albums that were pulled from Pitchfork without concern of their actual release date. 
 
 ## Preprocessing
 
@@ -35,13 +41,9 @@ For topic modeling, I tried several different topic modelling algorithms on the 
 
 Topic modelling was my primary interest for this probjust. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. I started topic modelling with latent Dirichlet allocation (LDA) because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). Before running a LDA model I wanted to figure out the ideal number of topics that I should expect to use. I had more then a million documents of NYT abstracts that streched about 25 years. I used topic coherence as a way to find the optimal number of topics for the opinion abstracts. The topic coherence score measurement helps distinguish between topics that are semantically interpretable topics and topics that are artifacts of statistical inference. I searched for optimal number of topics using the range betwee 10 and 90, increasing by four. The results of the coherence scoring indicated that 36 would be the optimal number of topics.
 
-Following LDA, I used NMF topic modelling on the NYT set. 
+The results LDA produced for 36 topics were pretty good. The first model was run without limiting the minimum or maximum appearances a term could have within the set of documents. I used gensim's filter_extremes on the NYT gensim dictionary to filter out any terms that appear in less than ten thousand documents and any that appear in more then 75%. 
 
-LSA -
-pLSA - 
-LDA - A super effective topic modelling technique. 
-LDA in Deep Learnig - lda2vec
-NMF - family of linear algebra algorithms for identifying the latent structure in data represented as a non-negative matrix. input is term-document matrix, typically TD-IDF normalized. ouput is two non-negative matrices of the original n words by k topics and those same k topics by the m original documents. LINEAR ALGEBRA for topic modeling instead of a probabilistic approach.
+
 
 Once I had the topics that I was happy with and were well defined in the Opinion's abstracts I moved on to topic modelling the Pitchfork reviews. I did the same process of trying the different methods of topic modelling that I used with 
 
