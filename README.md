@@ -15,15 +15,27 @@ I had two main sources of data for this project. I used articles from the New Yo
 
 I used the same preprocessing for the Pitchfork reviews and the NYT Opinion pieces' abstracts. 
 
+I made four sets of token that could have been used for analysis: (1) all of the tokens, unigram, with no stopwords removed; (2) unigram tokens with stopwords removed; (3) unigram tokens with stopwords removed and lemmatized; (4) bigram tokens produced from the tokens with stop words removed; (5) the previously mentioned bigram tokens lemmatized. 
+
 ## Analysis
+
+Before starting with topic modelling, I used a default dictionary to see the most frequently occuring tokens that appeared in the NYT article abstracts and the Pitchfork reviews, using the lemmatized unigrams. There were very few simillarities between the two sets of tokens.
+
+(insert picture of NYT with all tokens)
+(insert picture of Pitchfork with all tokens)
+
+I did the same process again but the second time only counting words with more than four characters. As would be expected, the Pitchfork tokens were music focused with words that have to do with the creative aspect of the album's production and songwriting. The NYT top tokens were much more distinct than those that were any length of characters and look like they would have good potential for making coherent topics. 
+
+(insert picture of NYT with > 4)
+(insert picture of Pitchfork with > 4)
+
+For topic modeling, I tried several different topic modelling algorithms on the NYT tokens to see the topics that would be produced. I used the lemmatized unigrams and filtered out any token that had four characters or less. Because there wasn't much simillarity between the NYT top tokens and the Pitchfork tokens, I topic modelled the Pitchfork documents to see the results that they would produce but I used the mentioned set of tokens because I knew that the best chance I had to find simillarities between the two sets of documents would using the results from the NYT set with CorEx for a semi-supervised topic modelling of the Pitchfork reviews. 
 
 ### Topic Modeling 
 
-Topic modelling was my primary point of interest with this project. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. 
+Topic modelling was my primary interest for this probjust. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. I started topic modelling with latent Dirichlet allocation (LDA) because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). Before running a LDA model I wanted to figure out the ideal number of topics that I should expect to use. I had more then a million documents of NYT abstracts that streched about 25 years. I used topic coherence as a way to find the optimal number of topics for the opinion abstracts. The topic coherence score measurement helps distinguish between topics that are semantically interpretable topics and topics that are artifacts of statistical inference. I searched for optimal number of topics using the range betwee 10 and 90, increasing by four. The results of the coherence scoring indicated that 36 would be the optimal number of topics.
 
-I started topic modelling with latent Dirichlet allocation because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). Before running a LDA model I wanted to figure out the ideal number of topics that I should expect to use. I had more then 200,000 documents for the opinion abstracts that streched about 25 years. I used topic coherence as a way to find the optimal number of topics for the opinion abstracts. The topic coherence score measurement helps distinguish between topics trhat are semantically interpretable topics and topics that are artifacts of statistical inference. 
-
-Topic modelling was my main interest when it came to looking at the similarities between the opinion pieces and the Pitchfork reviews. I tried several different approaches of topic modelling. I did Non-Negative Matrix Factorization, Latent Dis Allocation, ...... The abstracts for the opinion pieces are typicially about two paragraphs. 
+Following LDA, I used NMF topic modelling on the NYT set. 
 
 LSA -
 pLSA - 
