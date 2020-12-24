@@ -39,12 +39,9 @@ For topic modeling, I tried several different topic modelling algorithms on the 
 
 ### Topic Modeling 
 
-Topic modelling was my primary interest for this probjust. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. I started topic modelling with latent Dirichlet allocation (LDA) because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). Before running a LDA model I wanted to figure out the ideal number of topics that I should expect to use. I had more then a million documents of NYT abstracts that streched about 25 years. I used topic coherence as a way to find the optimal number of topics for the opinion abstracts. The topic coherence score measurement helps distinguish between topics that are semantically interpretable topics and topics that are artifacts of statistical inference. I searched for optimal number of topics using the range betwee 10 and 90, increasing by four. The results of the coherence scoring indicated that 36 would be the optimal number of topics.
+Topic modelling was my primary interest for this probjust. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. I started topic modelling with latent Dirichlet allocation (LDA) because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). 
 
-The results LDA produced for 36 topics were pretty good. The first model was run without limiting the minimum or maximum appearances a term could have within the set of documents. I used gensim's filter_extremes on the NYT gensim dictionary to filter out any terms that appear in less than ten thousand documents and any that appear in more then 75%. 
+Before running a LDA model I used the coherence score of LDA models, looping through the range of 10 to 90 incrementing by 5. I had more then a million documents of NYT abstracts that streched about 25 years. I filtered the dictionary of tokens to get rid of any tokens that appeared in 100 or less documents and no tokens that appeared in more than 60% of the documents. The topic coherence score measurement helps distinguish between topics that are semantically interpretable topics and topics that are artifacts of statistical inference.
 
-
-
-Once I had the topics that I was happy with and were well defined in the Opinion's abstracts I moved on to topic modelling the Pitchfork reviews. I did the same process of trying the different methods of topic modelling that I used with 
 
 ## Conclusion
