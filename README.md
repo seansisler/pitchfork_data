@@ -39,9 +39,15 @@ For topic modeling, I tried several different topic modelling algorithms on the 
 
 ### Topic Modeling 
 
-Topic modelling was my primary interest for this probjust. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. I started topic modelling with latent Dirichlet allocation (LDA) because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). 
+Topic modelling was my primary interest for this probjust. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. I started topic modelling with latent Dirichlet allocation (LDA) because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). I removed a few more stop words that were frequently appearing, most common tokens that were more to do with the structure of the news paper rather than the actual content (for example: 'article', 'photo', 'include') and I removed other words that I didn't think would effect the results of the topic modelling (example: 'month', 'would', 'could').
 
 Before running a LDA model I used the coherence score of LDA models, looping through the range of 10 to 90 incrementing by 5. I had more then a million documents of NYT abstracts that streched about 25 years. I filtered the dictionary of tokens to get rid of any tokens that appeared in 100 or less documents and no tokens that appeared in more than 60% of the documents. The topic coherence score measurement helps distinguish between topics that are semantically interpretable topics and topics that are artifacts of statistical inference.
 
 
-## Conclusion
+## Results
+
+You can check out the Tableau visualization that I made for my findings from my analysis. 
+
+I have also included below some visualizations while I was working on the project.
+
+
