@@ -41,8 +41,105 @@ For topic modeling, I tried several different topic modelling algorithms on the 
 
 Topic modelling was my primary interest for this probjust. My goal was to use the topic modelling of the two sets of documents, Pitchfork reviews and NYT opinion pieces, and find the correlation between current events and trends in music. I started topic modelling with latent Dirichlet allocation (LDA) because of the success I had with it in a previous project (the opinion abstracts being simillar is size and structure to the documents used in that project). I removed a few more stop words that were frequently appearing, most common tokens that were more to do with the structure of the news paper rather than the actual content (for example: 'article', 'photo', 'include') and I removed other words that I didn't think would effect the results of the topic modelling (example: 'month', 'would', 'could').
 
-Before running a LDA model I used the coherence score of LDA models, looping through the range of 10 to 90 incrementing by 5. I had more then a million documents of NYT abstracts that streched about 25 years. I filtered the dictionary of tokens to get rid of any tokens that appeared in 100 or less documents and no tokens that appeared in more than 60% of the documents. The topic coherence score measurement helps distinguish between topics that are semantically interpretable topics and topics that are artifacts of statistical inference.
+I had a difficult time getting topics that were up to the standard that I wanted to use for analysis. This is probably in part because LDA is a probablistic approach to topic modelling and because the documents weren't very long to begin and many documents had a small number of tokens for analysis the topics that were being created were blurry. I changed the values for no_below and no_above parameter to filter the Gensim dictionary which led to good results when no_below was set to 200 and no_above was set to .25 and removing commonly occuring stop words that were creating problems. Once I had better topics from the dictionary filtering, I increased the number of iterations from the default, 50, to 200. 
 
+
+
+
+Topic 1: [?] release, attack, death, leave, damage, soldier, suicide, stand, russian, hospital, police, train, family, office, victory, medical, federal, trial, wound, authority, effort, early, force, capital, control
+
+
+
+
+Topic 2: [covid] child, cancer, immigrant, woman, abuse, border, virus, treatment, migrant, illegal, detainee, force, death, vaccine, percent, disease, spread, federal, immigration, company, return, continue, political, family, authority
+
+
+
+Topic 3: [foriegn affairs] israeli, palestinian, peace, attack, suicide, korean, security, bombing, force, woman, wound, soldier, syrian, money, group, militant, south, issue, troop, agreement, violence, bomber, north, political, shoot
+
+Topic 4: chinese, child, prison, increase, prisoner, missile, young, leave, human, percent, family, woman, abuse, arrest, political, release, system, nation, military, lawyer, defense, remain, school, charge, court
+
+Topic 5: police, charge, officer, shoot, murder, prosecutor, election, worker, suspect, trial, evidence, arrest, death, federal, member, corruption, accuse, raise, cabinet, party, black, system, leave, political, chief
+
+Topic 6: election, woman, political, public, primary, early, voter, mother, national, result, governor, campaign, death, democratic, support, elect, company, republican, think, child, decision, announce, party, electoral, receive
+
+Topic 7: election, candidate, voter, attack, democratic, ballot, result, party, campaign, republican, terrorist, leave, primary, voting, early, night, issue, continue, network, black, count, return, federal, president, threat
+
+Topic 8: economic, economy, price, percent, market, sanction, support, business, growth, effort, increase, promise, raise, saudi, family, attack, group, benefit, company, fight, worker, force, leave, peace, world
+
+Topic 9: election, political, campaign, climate, change, raise, fight, visit, family, offer, public, party, support, ensure, effort, democratic, trial, global, member, group, action, palestinian, reporter
+
+Topic 10: doctor, health, issue, patient, medical, marriage, policy, political, animal, woman, record, couple, federal, trial, charge, public, family, hearing, german, child, practice, heart, member, decision, foreign
+
+Topic 11: trump, crime, sexual, issue, church, policy, woman, nation, abuse, thing, military, president, effort, group, peace, charge, foreign, catholic, bring, public, world, political, election, leave, priest
+
+Topic 12: nuclear, program, company, energy, weapon, administration, power, change, plant, federal, nation, campaign, proposal, agency, industry, policy, system, increase, spend, decision, large, climate, issue, major, environmental
+
+Topic 13: group, federal, arrest, member, party, nuclear, weapon, election, political, attack, terrorist, judge, effort, program, militant, suspect, charge, support, security, agent, police, public, secret, money, announce
+
+Topic 14: death, pandemic, woman, trial, political, federal, penalty, judge, court, issue, accuse, military, child, effort, execution, change, crisis, prosecutor, policy, group, problem, election, family, worker, release
+
+Topic 15: school, teacher, lawyer, college, federal, charge, offer, internet, security, allow, child, program, family, medium, class, trial, public, social, member, woman, change, virus, income, victim, computer
+
+Topic 16: troop, force, iraqi, water, nation, attack, power, military, college, public, political, world, resident, russian, administration, fight, afghan, member, crisis, group, large, mission, remain, provide, fighter
+
+Topic 17: school, public, college, system, black, attack, worker, police, effort, education, strike, death, health, force, weapon, military, nation, measure, child, earthquake, support, raise, campaign, union, large
+
+Topic 18: debate, political, voter, republican, money, campaign, candidate, party, immigration, politic, percent, election, nation, scandal, second, night, large, support, conservative, change, fight, budget, world, measure, leave
+
+Topic 19: campaign, trump, child, democratic, president, republican, party, voter, convention, conservative, group, parent, political, election, nomination, public, early, candidate, spend, attack, member, world, leave, issue, speak
+
+Topic 20: budget, court, federal, republican, system, campaign, spending, issue, reform, political, policy, limit, deficit, president, change, public, discuss, money, candidate, lawmaker, effort, justice, decision, action, black
+
+Topic 21: military, force, attack, soldier, violence, fight, iraqi, police, rebel, troop, afghan, policy, civilian, group, officer, border, leave, battle, security, foreign, continue, relief, issue, family, change
+
+Topic 22: crash, sentence, plane, school, storm, charge, prison, convict, flight, pilot, military, force, daughter, respond, death, leave, control, bring, small, hurricane, child, traffic, season, arrest, problem
+
+Topic 23: court, health, legal, service, public, appeal, trump, insurance, program, federal, system, action, lawyer, ruling, private, decision, mental, woman, group, voter, civil, political, provide, judge, coverage
+
+Topic 24: support, police, immigration, policy, leave, political, administration, issue, conference, attack, officer, legal, republican, human, claim, suggest, chief, federal, statement, offer, immigrant, legislation, charge, marriage, investigation
+
+Topic 25: [women rights] abortion, woman, trade, online, power, political, peace, effort, never, school, election, force, allow, divide, economic, nation, president, threat, issue, debate, fight, death, measure, follow
+
+Topic 1: election, campaign, charge, trump, military, fight, candidate, force, troop, arrest, voter, political, iraqi, republican, group, democratic, soldier, president, peace, trial, control, rebel, expect, opposition, appear
+
+Topic 2: police, officer, shoot, election, terrorist, service, political, attack, iraqi, world, death, close, leave, remain, sander, resign, military, family, member, local, system, suicide, travel, diplomat, force
+
+Topic 3: research, threat, internet, group, child, cancer, attack, chinese, policy, terrorist, pandemic, political, fight, foreign, court, release, member, interest, protect, black, message, service, border, effort, company
+
+Topic 4: charge, crash, plane, russian, guilty, public, company, accuse, security, federal, flight, plead, attack, lawyer, building, prosecutor, office, trial, member, order, passenger, rebel, airline, interview, police
+
+Topic 5: protest, black, troop, attack, campaign, protester, force, violence, large, police, continue, military, public, close, family, woman, allow, migrant, thousand, israeli, member, policy, support, hundred, arrest
+
+Topic 6: police, federal, court, arrest, party, charge, suspect, order, family, public, force, officer, attack, investigation, raise, political, lawyer, leave, authority, election, judge, death, local, issue, member
+
+Topic 7: palestinian, political, industry, company, price, economic, power, agency, water, program, candidate, approve, effort, israeli, leave, federal, charge, suicide, death, television, nation, speed, budget, family, police
+
+Topic 8: woman, child, abuse, immigrant, church, sexual, political, little, mother, member, effort, human, immigration, group, percent, recent, issue, legal, priest, campaign, raise, young, force, international, release
+
+Topic 9: nuclear, woman, attack, afghan, soldier, leave, militant, weapon, abortion, world, online, military, force, plant, police, group, young, wound, muslim, support, party, member, peace, policy, democratic
+
+Topic 10: court, marriage, group, immigration, decision, appeal, conservative, abortion, family, document, issue, woman, release, judge, federal, legal, couple, voter, political, justice, republican, measure, support, limit, allow
+
+Topic 11: military, attack, victim, think, group, political, program, death, administration, party, leave, nation, force, campaign, shiite, support, jewish, child, accuse, issue, terrorist, action, world, member, money
+
+Topic 12: candidate, debate, change, political, policy, party, republican, economy, climate, politic, economic, election, president, budget, child, democratic, crisis, voter, campaign, leave, health, speech, system, issue, start
+
+Topic 13: percent, border, support, military, nation, korean, measure, family, large, force, power, federal, troop, approve, increase, soldier, leave, provide, ensure, north, policy, airstrike, election, chinese, system
+
+Topic 14: school, college, public, education, system, teacher, child, money, federal, campaign, political, issue, raise, missile, nation, agree, program, black, teach, human, decision, finance, scientist, parent, propose
+
+Topic 15: israeli, attack, political, force, syrian, palestinian, police, nation, issue, early, military, support, offer, group, opposition, peace, conservative, visit, public, decision, agree, religious, major, leave, party
+
+Topic 16: campaign, effort, policy, world, visit, increase, issue, raise, republican, budget, trade, political, public, voter, bring, economic, energy, large, military, announce, early, election, support, deficit, system
+
+Topic 17: company, money, worker, spend, budget, campaign, program, strike, federal, business, republican, benefit, child, health, public, political, problem, group, union, raise, election, change, private, party, spending
+
+Topic 18: death, crime, federal, sentence, prison, program, charge, convict, attack, trial, weapon, bombing, terrorist, nation, murder, effort, penalty, group, prosecutor, administration, money, health, force, change
+
+Topic 19 [covid] health, doctor, patient, medical, virus, hospital, issue, offer, troop, force, provide, insurance, treatment, worker, mental, company, price, allow, program, treat, coverage, effort, spread, political, system
+
+Topic 20: campaign, leave, child, issue, effort, return, public, woman, power, school, president, political, history, democratic, place, column, parent, season, trump, enough, thing, storm, force, national, german
 
 ## Results
 
